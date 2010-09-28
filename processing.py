@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+fakeFid.py
+
+Created by Daniel O'Donovan on 2010-09-27.
+Copyright (c) 2010 Daniel O'Donovan. All rights reserved.
+"""
+
 import numpy
 
 # A first stab at some useful NMR processing functions to be kept in one place

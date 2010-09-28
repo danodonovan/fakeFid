@@ -4,7 +4,7 @@
 fakeFid.py
 
 Created by Daniel O'Donovan on 2010-09-27.
-Copyright (c) 2010 __MyCompanyName__. All rights reserved.
+Copyright (c) 2010 Daniel O'Donovan. All rights reserved.
 """
 
 import sys, os
@@ -23,7 +23,7 @@ class FID:
     self.dt   = time / float(size)
     self.size = size
     self.time = time
-    self.td	  = { 'time':np.arange( 0., time, self.dt ), \
+    self.td   = { 'time':np.arange( 0., time, self.dt ), \
                   'td':np.empty( size, dtype=np.complex ) }
     self.fd   = { 'freq':-1.*np.arange( -1./(time*2.), 1./(time*2.), (2./(time*2.))/size ), \
                   'fd':np.empty( size, dtype=np.complex ) }
@@ -35,7 +35,6 @@ class FID:
       print '&&& Warning signal at %f is out of spectral range, signal will be aliased.' % frequency
       print '&&& Frequency must lie in %f < f < %f' % ( -1./(self.time*2.), 1./(self.time*2.))
 
-    # WTF does this 2.17 come from ? very fishy...
     ( h, f ) = ( height, ((self.pi2 * self.time) * frequency) / self.dt )
 
     t               = self.td['time']
@@ -49,28 +48,27 @@ if __name__ == '__main__':
 
   fid = FID( size=2048, time=2.2 )
   
-  # fid.addSignal( 10.,  0.00, .5 )
-  # 
-  # fid.addSignal( 10.,  0.10, .5 )
-  # fid.addSignal( 10., -0.10, .5 )
-  # 
-  # fid.addSignal( 20.,  0.18, .5 )
-  # fid.addSignal( 30., -0.18, .5 )
-  # 
-  # fid.addSignal( 20., -0.20, .5 )
+  fid.addSignal( 10.,  0.00, .5 )
+  
+  fid.addSignal( 10.,  0.10, .5 )
+  fid.addSignal( 10., -0.10, .5 )
+  
+  fid.addSignal( 20.,  0.18, .5 )
+  fid.addSignal( 30., -0.18, .5 )
+  
+  fid.addSignal( 20., -0.20, .5 )
 
-  fid = FID( size=2048, time=2048. )
-  
-  fid.addSignal( 10.,  0.0, 1.0E3 )
-  
-  fid.addSignal( 10.,  0.0001, 1.0E3 )
-  fid.addSignal( 10., -0.0001, 1.0E3 )
-  
-  fid.addSignal( 20.,  0.00018, 1.0E3 )
-  fid.addSignal( 30., -0.00018, 1.0E3 )
-  
-  fid.addSignal( 20., -0.0002, 1.0E3 )
-
+  # fid = FID( size=2048, time=2048. )
+  # 
+  # fid.addSignal( 10.,  0.0, 1.0E3 )
+  # 
+  # fid.addSignal( 10.,  0.0001, 1.0E3 )
+  # fid.addSignal( 10., -0.0001, 1.0E3 )
+  # 
+  # fid.addSignal( 20.,  0.00018, 1.0E3 )
+  # fid.addSignal( 30., -0.00018, 1.0E3 )
+  # 
+  # fid.addSignal( 20., -0.0002, 1.0E3 )
 
   fid.fft()
 
